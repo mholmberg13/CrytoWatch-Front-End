@@ -2,6 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+fetch('https://api.coinlore.net/api/tickers/')
+        .then(data => {
+            return data.json()},
+            err => console.log(err))
+            .then(parsedData => console.log(parsedData),
+            err => console.log(err))
+
 function App() {
   return (
     <div className="App">
@@ -24,3 +31,4 @@ function App() {
 }
 
 export default App;
+
