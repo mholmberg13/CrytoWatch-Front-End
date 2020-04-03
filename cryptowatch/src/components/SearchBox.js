@@ -35,5 +35,6 @@ class SearchBox extends React.Component {
             </div>
         )
     }
-
 }
+
+export default SearchBox
