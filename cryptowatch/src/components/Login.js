@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <form action="">
+                <form onSubmit={this.handleSubmit}>
                     <h3>Login</h3>
                     <input 
                         type="text" 
@@ -44,6 +44,7 @@ class LoginForm extends React.Component {
                         value={this.state.loginInPassword}
                         placeholder="password"
                     />
+                    <input type="submit" value="Login/Register" />
                 </form>
                 <div className="login-options">
                     <button className="login" onClick={this.setState.login = true}>Login</button>
