@@ -47,8 +47,8 @@ class LoginForm extends React.Component {
                     <input type="submit" value="Login/Register" />
                 </form>
                 <div className="login-options">
-                    <button className="login" onClick={this.setState.login = true}>Login</button>
-                    <button className="register" onClick={this.setState.login = false}>Register</button>
+                    <button className="login" onClick={() => this.setState.login = true}>Login</button>
+                    <button className="register" onClick={() => this.setState.login = false}>Register</button>
                 </div>
             </div>
         )
