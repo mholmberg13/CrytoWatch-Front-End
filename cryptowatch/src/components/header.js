@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 class Header extends React.Component {
@@ -11,12 +12,12 @@ class Header extends React.Component {
                     </div>
                     <div className='right-side'>
                         <Link to="/">Home</Link>
-                        <Link to="/aboutus"></Link>
+                        <Link to="/aboutus">About Us</Link>
                     </div>
                 </div>
                 <div>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/aboutus" exact component={AboutUs} />
+                    {/* <Route path="/" exact component={Home} />
+                    <Route path="/aboutus" exact component={AboutUs} /> */}
                 </div>
             </BrowserRouter>
         )
@@ -25,4 +26,4 @@ class Header extends React.Component {
 
 
 
-export default App;
+export default Header;

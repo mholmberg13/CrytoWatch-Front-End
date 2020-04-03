@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/header.js'
+import LoginForm from './components/Login.js'
+
 fetch('https://api.coinlore.net/api/tickers/')
         .then(data => {
             return data.json()},
@@ -12,7 +14,10 @@ fetch('https://api.coinlore.net/api/tickers/')
 class App extends React.Component {
   render() {
     return (
-      <Header/>
+      <div>
+        <Header />
+        <LoginForm />
+      </div>
     )
   }
 }
