@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/header.js'
 import LoginForm from './components/Login.js'
+import TopTen from './components/TopTen.js'
+import SearchBox from './components/SearchBox.js'
+import LandingPage from './components/LandingPage';
 
 fetch('https://api.coinlore.net/api/tickers/')
         .then(data => {
@@ -15,8 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <LoginForm />
+        <LandingPage />
       </div>
     )
   }

@@ -7,13 +7,11 @@ class Header extends React.Component {
         return (
             <BrowserRouter>
                 <div className='nav'>
-                    <div className='left-side'>
-                        <p>cryptoWatch</p>
-                    </div>
-                    <div className='right-side'>
-                        <Link to="/">Home</Link>
-                        <Link to="/aboutus">About Us</Link>
-                    </div>
+                    <ul>
+                        <li className='logo'>cryptoTracker</li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/aboutus">About Us</Link></li>
+                    </ul>
                 </div>
                 <div>
                     {/* <Route path="/" exact component={Home} />

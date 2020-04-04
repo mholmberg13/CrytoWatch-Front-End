@@ -19,10 +19,10 @@ class SearchBox extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='search-container'>
                 <form onSubmit={this.handleSubmmit}>
-                    <h3>Search Crypto Currencies</h3>
-                    <input 
+                    <input
+                        className="search"
                         type="text"
                         name="search"
                         id="name"
@@ -30,7 +30,8 @@ class SearchBox extends React.Component {
                         value={this.state.search}
                         placeholder="enter currency name"
                     />
-                    <input type="submit" value="Search"/>
+                    <br/>
+                    <input className="search-button" type="submit" value="Search"/>
                 </form>
             </div>
         )

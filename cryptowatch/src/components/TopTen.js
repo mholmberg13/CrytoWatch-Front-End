@@ -5,13 +5,10 @@ class Currency extends React.Component {
         return (
             <div>
                 <div className="currency">
-                    <div className="rank">{this.props.rank}</div>
+                    <div className="rank">{this.props.rank}:</div>
                     <div className="name">{this.props.name}</div>
-                    <div className="price">{this.props.price}</div>
-                    <div className="controls">
-                        <button className="view-btn" onClick={this.props.viewFunc}>View</button>
-                        <button className="favorites-btn" onClick={this.props.addFunc}>Add to Favorites</button>
-                    </div>
+                    <div className="price">Current Price: ${this.props.price}</div>
+                    <div className="ondDayChange">24hr Change: %{this.props.oneDayChange}</div>
                 </div>
             </div>
         )
@@ -51,12 +48,14 @@ class TopTen extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='top10-container'>
                 {this.state.currencies.map(currency => (
                     <Currency
+                        key={currency.id}
                         rank={currency.rank}
                         name={currency.name}
-                        price={currency.price}
+                        price={currency.price_usd}
+                        oneDayChange={currency.percent_change_24h}
                     />
                 ))}
             </div>
