@@ -13,7 +13,6 @@ class LoginForm extends React.Component {
         fetch(this.props.baseURL + "/", {
 
         })
-
     }
 
     // HANDLE CHANGE
