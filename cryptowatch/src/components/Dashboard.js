@@ -116,8 +116,6 @@ class Dashboard extends React.Component {
         // DISPLAY CONDITIONALS
         if((pricesLength > 0)&&(pricesLength === idLength)){
             if(symbolsLength === idLength){
-                console.log('chartSymbols: ',this.state.chartSymbols)
-                console.log('chartPrices:', this.state.chartPrices)
                 name = this.state.favorites[this.state.selectIndex].name;
                 rank = this.state.favorites[this.state.selectIndex].rank;
                 price = this.state.favorites[this.state.selectIndex].price_usd;
