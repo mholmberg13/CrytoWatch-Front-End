@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="Login-Container">
                 <form onSubmit={this.handleSubmit}>
                     <h3>Login</h3>
                     <input 

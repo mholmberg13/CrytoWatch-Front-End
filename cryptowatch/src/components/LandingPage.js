@@ -10,9 +10,15 @@ class LandingPage extends React.Component {
             <div className="page-container">
                 <div className="landing-container">
                     <Header />
-                    <SearchBox />
-                    <TopTen />
-                    <LoginForm />
+                    <div className='content-container'>
+                        <div className="top-content">
+                            <SearchBox currencies={this.props.currencies}/>
+                            <LoginForm />
+                        </div>
+                        <div className="bottom-content">
+                            <TopTen />
+                        </div>
+                    </div>
                 </div>
             </div>
         )

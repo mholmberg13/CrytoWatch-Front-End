@@ -23,13 +23,11 @@ body {
     list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     padding-left: 0;
 }
 
 .nav ul li {
     display: inline;
-    align-self: flex-end;
 }
 
 .nav li a {
@@ -50,17 +48,38 @@ body {
     margin-right: auto;
     margin-left: 16px;
     color: white;
+    font-size: 20px;
+}
+
+.top-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom-content {
+    display: flex;
+    align-content: right;
 }
 
 .search-container {
-    margin: 5% 0 5% 16px;
+    margin: 3% 0 5% 45px;
+    background-color: rgba(0, 0, 0, 0.212);
+    border-radius: 3px;
+    width: 16%;
+    height: auto;
+    padding: 5px;
+}
+
+#search {
+    width: 200px;
+    height: 25px;
 }
 
 .search-button {
     border: none;
     background-color: rgba(255, 255, 255, 0);
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     padding-left: 0;
     padding-top: 10px;
 }
@@ -69,5 +88,28 @@ body {
     border-radius: 3px;
     background-color: white;
     border: 0;
+}
+
+.Login-Container {
+    height: 120px;
+    margin: 3% 45px 16px auto;
+    padding: 10px;
+}
+
+.Login-Container h3 {
+    margin-top: 0;
+    
+}
+
+.Login-Container input {
+    width: 150px;
+    height: 18px;
+    border-radius: 3px;
+}
+
+.top10-container {
+    background-color: rgba(0, 0, 0, 0.212);
+    width: 65%;
+    margin: 16px;
 }
 
