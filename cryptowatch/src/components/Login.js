@@ -1,19 +1,77 @@
 import React from 'react'
 
+let dbPORT = "3005";
+let dbbaseURL = 'http://localhost:';
+
 class LoginForm extends React.Component {
     state = {
-        login: false,
+        login: true,
         username: "",
-        password: ""
+        password: "",
+        currentUser: "",
+        currentUserId: ""
     }
 
-    // HANDLE SUBMIT
-    handleSubmit = event => {
-        event.preventDefault();
-        fetch(this.props.baseURL + "/", {
-
+    // CLEAR USERNAME AND PASSWORD
+    clearCredentials = () => {
+        this.setState({
+            username: "",
+            password: ""
         })
     }
+
+
+    handleSignUp = () => {
+        console.log(this.state.username, this.state.password);
+        fetch(dbbaseURL + dbPORT + "/crypto", {
+          method: "POST",
+          body: JSON.stringify({
+            username: this.state.username,
+            password: this.state.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((resJson) => {
+            console.log(resJson);
+            this.setState({
+              currentUser: resJson.username,
+            });
+          })
+          .catch((error) => console.error({ Error: error }));
+          this.clearCredentials();
+      };
+
+
+    // HANDLE SIGN IN
+    handleSignIn = () => {
+        console.log(this.state.username, this.state.password);
+        fetch(dbbaseURL + dbPORT + '/sessions', {
+          method: "POST",
+          credentials: "same-origin",
+          //mode: "no-cors",
+          body: JSON.stringify({
+            username: 'shoran234',
+            password: 'password3',
+          }), 
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json" 
+          },
+        })
+          .then((res) => res.json())
+          .then((resJson) => {
+            console.log(resJson);
+            this.setState({
+              currentUser: resJson.username,
+              currentUserId: resJson._id,
+            });
+          })
+          .catch((error) => console.error({ Error: error }));
+          this.clearCredentials();
+    };
 
     // HANDLE CHANGE
     handleChange = event => {
@@ -23,16 +81,19 @@ class LoginForm extends React.Component {
     }
 
     render() {
+
+        console.log(this.state.currentUserId)
+
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form >
                     <h3>Login</h3>
                     <input 
                         type="text" 
                         name="username" 
                         id="username"
                         onChange={this.handleChange}
-                        value={this.state.loginUsername}
+                        value={this.state.username}
                         placeholder="username"
                     />
                     <input 
@@ -40,14 +101,13 @@ class LoginForm extends React.Component {
                         name="password"
                         id="password"
                         onChange={this.handleChange}
-                        value={this.state.loginInPassword}
+                        value={this.state.password}
                         placeholder="password"
                     />
-                    <input type="submit" value="Login/Register" />
                 </form>
                 <div className="login-options">
-                    <button className="login" onClick={() => this.setState.login = true}>Login</button>
-                    <button className="register" onClick={() => this.setState.login = false}>Register</button>
+                    <button className="login" onClick={() => this.handleSignIn()}>Login</button>
+                    <button className="register" onClick={() => this.handleSignUp(false)}>Register</button>
                 </div>
             </div>
         )

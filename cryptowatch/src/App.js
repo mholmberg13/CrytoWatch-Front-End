@@ -22,8 +22,6 @@ class App extends React.Component {
             })
     }
     render() {
-
-
         return (
         <div>
             <LandingPage currencies={this.state.currencies}/>
