@@ -6,6 +6,24 @@ let dbbaseURL = 'http://localhost:';
 let tempUserId = '5e85279aea824c0d018594f7'
 
 class ShowResults extends React.Component {
+    pushFavorites = (incomingData) => {
+        console.log(incomingData)
+        fetch(dbbaseURL + dbPORT + '/crypto/' + tempUserId, {
+            method: 'PUT',
+            body: JSON.stringify({
+                currencyIds: incomingData.currencyIds,
+                username: incomingData.username,
+                password: incomingData.password,
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(resJson => {
+            console.log('resJson = ',resJson)
+        })
+    }
 
     // GET FAVORITES FROM DATABASE
     addToFavorites = (id) => {
@@ -13,28 +31,10 @@ class ShowResults extends React.Component {
             .then(data => data.json(), err => console.log(err))
             .then(parsedData => {
                 console.log('parsedData',parsedData);
-                this.setState({copyUsername: parsedData.username});
-                this.setState({copyPassword: parsedData.password});
-                this.setState({copyCurrencyIds: parsedData.currencyIds})
-                console.log(this.state.copyUsername)
-                console.log(this.state.copyPassword)
-                console.log(this.state.copyCurrencyIds)
-                this.state.copyCurrencyIds.unshift(id)
-                console.log(this.state.copyCurrencyIds)
+                const copyUser = parsedData
+                copyUser.currencyIds.push(id);
+                this.pushFavorites(copyUser)
             }) 
-        fetch(dbbaseURL + dbPORT + '/crypto/' + tempUserId, {
-            method: 'PUT',
-            body: JSON.stringify({currencyIds: this.state.copyCurrencyIds}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-        .then(resJson => {
-            console.log('response: ',resJson);
-        })
-
-
-
     }
 
     render () {
