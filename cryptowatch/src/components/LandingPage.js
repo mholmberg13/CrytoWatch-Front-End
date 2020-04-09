@@ -11,11 +11,17 @@ class LandingPage extends React.Component {
                 <div className="landing-container">
                     <Header />
                     <div className='content-container'>
-                        <div className="top-content">
-                            <SearchBox currencies={this.props.currencies}/>
-                            <LoginForm />
+                        <div className="left-content">
+                            <LoginForm 
+                                handleSignIn={this.props.handleSignIn}
+                                handleSignUp={this.props.handleSignUp}
+                                handleChange={this.props.handleChange}
+                                username={this.props.username}
+                                password={this.props.password}
+                            />
                         </div>
-                        <div className="bottom-content">
+                        <div className="right-content">
+                            <SearchBox currencies={this.props.currencies}/>
                             <TopTen />
                         </div>
                     </div>

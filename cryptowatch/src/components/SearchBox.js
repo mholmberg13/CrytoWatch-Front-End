@@ -1,13 +1,40 @@
 import React from 'react'
 
 let currencyList = [];
+let dbPORT = "3005";
+let dbbaseURL = 'http://localhost:';
+let tempUserId = '5e85279aea824c0d018594f7'
 
 class ShowResults extends React.Component {
 
-    addToFavorites = (event) => {
-        event.preventDefault();
-        // This is where the user would hit the route to post the id to the data base
-        
+    // GET FAVORITES FROM DATABASE
+    addToFavorites = (id) => {
+        fetch(dbbaseURL + dbPORT + '/crypto/' + tempUserId)      // need to get id from authentication
+            .then(data => data.json(), err => console.log(err))
+            .then(parsedData => {
+                console.log('parsedData',parsedData);
+                this.setState({copyUsername: parsedData.username});
+                this.setState({copyPassword: parsedData.password});
+                this.setState({copyCurrencyIds: parsedData.currencyIds})
+                console.log(this.state.copyUsername)
+                console.log(this.state.copyPassword)
+                console.log(this.state.copyCurrencyIds)
+                this.state.copyCurrencyIds.unshift(id)
+                console.log(this.state.copyCurrencyIds)
+            }) 
+        fetch(dbbaseURL + dbPORT + '/crypto/' + tempUserId, {
+            method: 'PUT',
+            body: JSON.stringify({currencyIds: this.state.copyCurrencyIds}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(resJson => {
+            console.log('response: ',resJson);
+        })
+
+
+
     }
 
     render () {
@@ -18,9 +45,7 @@ class ShowResults extends React.Component {
                 <h5><span>Rank: </span>{this.props.rank}</h5>
                 <h5><span>Price: </span>{this.props.price}</h5>
                 <h5><span>Symbol: </span>{this.props.symbol}</h5>
-                <form onSubmit={this.addToFavorites}>
-                    <input type="submit" value="Add to favorites"/>
-                </form>
+                <button onClick={() => this.addToFavorites(this.props.id)}>Add to favorites</button>
             </div>
         )
     }
@@ -31,7 +56,10 @@ class SearchBox extends React.Component {
         search: "",
         currencies: [],
         searchResults: [],
-        isSubmitted: false
+        isSubmitted: false,
+        copyUsername: "",
+        copyPassword: "",
+        copyCurrencyIds: []
     }
 
     // SET STATE CURRENCIES
@@ -92,8 +120,8 @@ class SearchBox extends React.Component {
                     rank={this.state.searchResults.rank}
                     price={this.state.searchResults.price_usd}
                     symbol={this.state.searchResults.symbol}
-                /> : null}
-                {this.state.isSubmitted ? <button onClick={()=> this.clearSearch()}>Clear Search</button> : null}
+                    id={this.state.searchResults.id}
+                /> : null }
             </div>
         )
     }    

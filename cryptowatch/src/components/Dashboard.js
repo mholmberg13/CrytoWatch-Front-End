@@ -43,7 +43,7 @@ class Bargraph extends React.Component {
 // FAVORITES LIST COMPONENT
 class Dashboard extends React.Component {
     state = {
-        userId: '5e85279aea824c0d018594f7',
+        userId: this.props.currentUserId,
         idArr: [],
         favorites: [],
         selectIndex: 0,
