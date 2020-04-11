@@ -20,6 +20,10 @@ We wanted to to utilize an api to get the most recent cryptocurrency data. We wa
 - javaScript
 - React
 
+# Roles
+Matt - Product manager, front-end
+Scott - Release Manager, back end
+
 # Trello
 https://trello.com/b/Okvb6hBP/cryptowatch
 
