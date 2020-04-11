@@ -20,6 +20,9 @@ We wanted to to utilize an api to get the most recent cryptocurrency data. We wa
 - javaScript
 - React
 
+# Trello
+https://trello.com/b/Okvb6hBP/cryptowatch
+
 # Wireframes
 ![Wirefame1](https://github.com/shoran23/CrytoWatch-Front-End/blob/master/Screen%20Shot%202020-04-04%20at%2012.38.30%20PM.png)
 ![Wireframe2](https://github.com/shoran23/CrytoWatch-Front-End/blob/master/Screen%20Shot%202020-04-04%20at%2012.38.41%20PM.png)
