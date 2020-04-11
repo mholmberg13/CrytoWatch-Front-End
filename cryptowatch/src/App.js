@@ -4,6 +4,7 @@ import './App.css';
 import LandingPage from './components/LandingPage.js';
 import Dashboard from './components/Dashboard.js';
 
+<<<<<<< HEAD
 let dbPORT = "3005";
 let dbbaseURL = 'http://localhost:';
 
@@ -136,6 +137,35 @@ class App extends React.Component {
     componentDidMount() {
         this.getCurrencies();
     }
+=======
+
+fetch('https://api.coinlore.net/api/tickers/')
+        .then(data => {
+            return data.json()},
+            err => console.log(err))
+            .then(parsedData => console.log(parsedData),
+            err => console.log(err))
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+>>>>>>> fd3fb8191e781499829ab6821709c72e263a7247
 }
 
 export default App;
