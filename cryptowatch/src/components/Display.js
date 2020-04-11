@@ -5,7 +5,7 @@ class CurrencyInfo extends React.Component {
     return (
       <>
         <div className="display">
-            <h3>Currency Info:</h3>
+            <h3>Display</h3>
             <h4>{this.props.currency.name}</h4>
             <h6><span>Rank:</span> {this.props.currency.rank}</h6>
             <h6><span>Price:</span> {this.props.currency.price}</h6>

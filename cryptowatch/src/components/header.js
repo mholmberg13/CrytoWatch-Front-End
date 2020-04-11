@@ -9,7 +9,8 @@ class Header extends React.Component {
                 <div className='nav'>
                     <ul>
                         <li className='logo'>cryptoTracker</li>
-                        <li><Link to="/">Home</Link></li>
+                        { this.props.login ?  
+                        <li onClick={this.props.handleLogOut}><Link to="/">Log Out</Link></li> : null }
                         <li><Link to="/aboutus">About Us</Link></li>
                     </ul>
                 </div>

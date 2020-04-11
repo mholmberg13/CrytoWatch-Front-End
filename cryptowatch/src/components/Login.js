@@ -20,8 +20,9 @@ class LoginForm extends React.Component {
                         value={this.props.username}
                         placeholder="username"
                     />
+                    <br/>
                     <input 
-                        type="text"
+                        type="password"
                         name="password"
                         id="password"
                         onChange={this.props.handleChange}

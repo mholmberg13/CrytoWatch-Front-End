@@ -78,6 +78,22 @@ class App extends React.Component {
           this.clearCredentials();
     };
 
+    handleLogOut = () => {
+      fetch(dbbaseURL + dbPORT + '/sessions', {
+        method: "DELETE",
+        // credentials: "same-origin",
+        // mode: "no-cors",
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+        }), 
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json" 
+        }
+      }).then(this.setState({login: false}))
+    }
+
     // HANDLE CHANGE
     handleChange = event => {
         this.setState({
@@ -93,6 +109,7 @@ class App extends React.Component {
                 this.setState({currencies: parsedData.data})
             })
     }
+
     render() {
         return (
         <div>
@@ -104,8 +121,14 @@ class App extends React.Component {
                 handleChange={this.handleChange}
                 username={this.state.username}
                 password={this.state.password}
+                currentUserId={this.state.userId}
+                login={this.state.login}
             /> : <Dashboard 
+                    currencies={this.state.currencies}
                     currentUserId={this.state.currentUserId}
+                    currentUser={this.state.currentUser}
+                    login={this.state.login}
+                    handleLogOut={this.handleLogOut}
                     /> }
         </div>
         )

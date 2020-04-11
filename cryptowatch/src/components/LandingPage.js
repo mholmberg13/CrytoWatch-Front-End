@@ -21,7 +21,12 @@ class LandingPage extends React.Component {
                             />
                         </div>
                         <div className="right-content">
-                            <SearchBox currencies={this.props.currencies}/>
+                            <SearchBox 
+                                currencies={this.props.currencies}
+                                clearSearch={this.props.clearSearch}
+                                userId={this.props.currenctUserId}
+                                login={this.props.login}
+                                />
                             <TopTen />
                         </div>
                     </div>

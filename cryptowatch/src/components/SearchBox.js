@@ -3,49 +3,37 @@ import React from 'react'
 let currencyList = [];
 let dbPORT = "3005";
 let dbbaseURL = 'http://localhost:';
-let tempUserId = '5e85279aea824c0d018594f7'
+let userId = "";
+
+let copyUsername;
+let copyPassword;
+let copyCurrencyIds;
+
 
 class ShowResults extends React.Component {
 
-    // GET FAVORITES FROM DATABASE
-    addToFavorites = (id) => {
-        fetch(dbbaseURL + dbPORT + '/crypto/' + tempUserId)      // need to get id from authentication
-            .then(data => data.json(), err => console.log(err))
-            .then(parsedData => {
-                console.log('parsedData',parsedData);
-                this.setState({copyUsername: parsedData.username});
-                this.setState({copyPassword: parsedData.password});
-                this.setState({copyCurrencyIds: parsedData.currencyIds})
-                console.log(this.state.copyUsername)
-                console.log(this.state.copyPassword)
-                console.log(this.state.copyCurrencyIds)
-                this.state.copyCurrencyIds.unshift(id)
-                console.log(this.state.copyCurrencyIds)
-            }) 
-        fetch(dbbaseURL + dbPORT + '/crypto/' + tempUserId, {
-            method: 'PUT',
-            body: JSON.stringify({currencyIds: this.state.copyCurrencyIds}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-        .then(resJson => {
-            console.log('response: ',resJson);
-        })
-
-
-
+    state = {
+        userId: this.props.userId
     }
 
     render () {
+
+        console.log(this.props.login)
+
         return (
             <div className="search-results">
-                <h3>{this.props.label}</h3>
-                <h4><span></span>Name: {this.props.name}</h4>
-                <h5><span>Rank: </span>{this.props.rank}</h5>
+                <h4><span>{this.props.rank}:</span> {this.props.name}</h4>
                 <h5><span>Price: </span>{this.props.price}</h5>
                 <h5><span>Symbol: </span>{this.props.symbol}</h5>
-                <button onClick={() => this.addToFavorites(this.props.id)}>Add to favorites</button>
+                { this.props.login ? <button 
+                    onClick={() => {
+                        this.props.addToFavorites(this.props.id);
+                        this.props.clearSearch();
+                    }
+                }
+
+                >FAVORITE</button> : null }
+                <button className="clear" onClick={() => this.props.clearSearch()}>CLEAR</button>
             </div>
         )
     }
@@ -99,6 +87,7 @@ class SearchBox extends React.Component {
 
     render() {
         currencyList = this.props.currencies;
+        userId = this.props.userId;
         return (
             <div className='search-container'>
                 <form onSubmit={this.handleSubmit}>
@@ -109,7 +98,7 @@ class SearchBox extends React.Component {
                         id="search"
                         onChange={this.handleChange}
                         value={this.state.search}
-                        placeholder="enter currency name"
+                        placeholder=" enter currency name"
                     />
                     <br/>
                     <input className="search-button" type="submit" value="Search"/>
@@ -121,6 +110,9 @@ class SearchBox extends React.Component {
                     price={this.state.searchResults.price_usd}
                     symbol={this.state.searchResults.symbol}
                     id={this.state.searchResults.id}
+                    clearSearch={this.clearSearch}
+                    addToFavorites={this.props.addToFavorites}
+                    login={this.props.login}
                 /> : null }
             </div>
         )
